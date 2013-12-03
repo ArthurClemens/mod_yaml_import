@@ -1,0 +1,13 @@
+Make sure that rebar is executable:
+$ chmod +x rebar
+
+Fetch yamerl from GitHub:
+$ ./rebar get-deps
+
+Compile yamerl files:
+$ ./rebar compile
+
+Enable this module in the admin.
+Refresh the page and find the import page in the admin menu under Modules.
+
+You may need to do "Rescan modules" from the System > Status panel.

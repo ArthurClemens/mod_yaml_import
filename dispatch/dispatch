@@ -1,0 +1,48 @@
+[
+    {
+        admin_yaml_import, 
+        ["admin", "yaml", "import"],
+        controller_admin,
+        [
+            {template, "admin_yaml_import.tpl"},
+            {acl, {use, mod_admin}}
+        ]
+    },
+    {
+        view_record,
+        ["view_record"],
+        controller_api,
+        [
+            {module, "yaml_import"},
+            {method, "view_record"}
+        ]
+    },
+    {
+        import,
+        ["import"],
+        controller_api,
+        [
+            {module, "yaml_import"},
+            {method, "import"}
+        ]
+    },
+    {
+        get_data,
+        ["get_data"],
+        controller_api,
+        [
+            {module, "yaml_import"},
+            {method, "get_data"}
+        ]
+    },
+    {
+        validate_setting,
+        ["validate_setting"],
+        controller_api,
+        [
+            {module, "yaml_import"},
+            {method, "validate_setting"}
+        ]
+    }
+].
+

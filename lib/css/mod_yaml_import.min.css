@@ -1,0 +1,280 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.alert {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.alert,
+.alert h4 {
+  color: #c09853;
+}
+.alert h4 {
+  margin: 0;
+}
+.alert .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  line-height: 20px;
+}
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+.alert-success h4 {
+  color: #468847;
+}
+.alert-danger,
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+.alert-danger h4,
+.alert-error h4 {
+  color: #b94a48;
+}
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #3a87ad;
+}
+.alert-info h4 {
+  color: #3a87ad;
+}
+.alert-block {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.alert-block > p,
+.alert-block > ul {
+  margin-bottom: 0;
+}
+.alert-block p + p {
+  margin-top: 5px;
+}
+.nav > .disabled > a {
+  color: #999999;
+}
+.nav > .disabled > a:hover,
+.nav > .disabled > a:focus,
+.tabs-left > .nav-tabs > .disabled > a:hover,
+.tabs-left > .nav-tabs > .disabled > a:focus {
+  text-decoration: none;
+  background-color: transparent;
+  cursor: default;
+  border-color: transparent;
+}
+.admin-yaml-import #admin-yaml-import-wizard {
+  margin: 1em 0;
+}
+.admin-yaml-import form {
+  margin: 0;
+}
+.admin-yaml-import fieldset {
+  margin: 0 0 15px 0;
+}
+.admin-yaml-import .file-input-wrapper + .btn {
+  display: none;
+}
+.admin-yaml-import .file-input-name {
+  padding-right: 10px;
+}
+.admin-yaml-import .admin-yaml-import-validated {
+  position: relative;
+  display: inline-block;
+}
+.admin-yaml-import .admin-yaml-import-settings-bar .navbar-inner {
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+  border: 1px solid #d4d4d4;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+}
+.admin-yaml-import .tab-content {
+  overflow: initial;
+}
+.admin-yaml-import .admin-yaml-import-table {
+  width: auto;
+  background: #fff;
+}
+.admin-yaml-import .admin-yaml-import-table td,
+.admin-yaml-import .admin-yaml-import-table th {
+  width: 33%;
+}
+.admin-yaml-import .admin-yaml-import-table td.admin-yaml-import-table-select,
+.admin-yaml-import .admin-yaml-import-table th.admin-yaml-import-table-select {
+  width: auto;
+}
+.admin-yaml-import .admin-yaml-import-table td p,
+.admin-yaml-import .admin-yaml-import-table th p {
+  margin: 10px 0 0 0;
+}
+.admin-yaml-import .admin-yaml-import-table td span {
+  word-break: break-all;
+}
+.admin-yaml-import .admin-yaml-import-table input[type="text"] {
+  margin: 0;
+  width: 90%;
+}
+.admin-yaml-import .admin-yaml-import-table input[disabled] {
+  background-color: #f2f2f2;
+  color: #aaa;
+}
+.admin-yaml-import .admin-yaml-import-table input[readonly] {
+  cursor: default;
+  background-color: #fff;
+  color: #666;
+}
+.admin-yaml-import .admin-yaml-import-table input.admin-yaml-import-mapping {
+  border: 1px dashed #ccc;
+  box-shadow: none;
+  cursor: pointer;
+}
+.admin-yaml-import .admin-yaml-import-table input.admin-yaml-import-mapping:hover {
+  border-color: #aaa;
+  background-color: #f2f2f2;
+}
+.admin-yaml-import .admin-yaml-import-table .admin-yaml-import-validated {
+  width: 100%;
+}
+.admin-yaml-import .admin-yaml-import-table .admin-yaml-import-pager {
+  float: right;
+  font-weight: normal;
+  color: #999;
+}
+.admin-yaml-import .admin-yaml-import-table .admin-yaml-import-pager a {
+  font-weight: bold;
+  margin: 0 0 0 .25em;
+}
+.admin-yaml-import .admin-yaml-import-table .admin-yaml-import-record-btn-disabled {
+  cursor: default;
+  color: #aaa;
+}
+.admin-yaml-import .admin-yaml-import-table .admin-yaml-import-record-btn-disabled:hover {
+  text-decoration: none;
+}
+.admin-yaml-import .admin-yaml-import-table .admin-yaml-import-value {
+  min-width: 300px;
+}
+.admin-yaml-import .admin-yaml-results-table th,
+.admin-yaml-import .admin-yaml-results-table td {
+  width: 50%;
+}
+.admin-yaml-import .admin-yaml-results-table ul {
+  list-style: none;
+  margin: 0;
+}
+.admin-yaml-import .admin-yaml-results-table .admin-yaml-results-category {
+  color: #999;
+}
+.admin-yaml-import .alert {
+  margin-top: 5px;
+}
+.admin-yaml-import legend {
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+.admin-yaml-import legend + .control-group {
+  margin-top: 0;
+}
+.admin-yaml-import textarea.admin-yaml-import-profile {
+  display: none;
+  width: 100%;
+  margin: 15px 0;
+}
+.admin-yaml-import .validationMessage,
+.admin-yaml-import .z_validation_message {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  position: absolute;
+  z-index: 1;
+  top: 34px;
+  left: 0;
+  padding: 6px 8px;
+  margin: 0;
+  display: inline-block;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 16.200000000000003px;
+}
+.admin-yaml-import .validationMessage:after,
+.admin-yaml-import .z_validation_message:after {
+  position: absolute;
+  left: 19px;
+  top: 0;
+  margin-top: -8px;
+  margin-left: -8px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  content: " ";
+  border-bottom: 8px solid #f2dede;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+.admin-yaml-import-type-modal {
+  /*
+    .admin-yaml-import-type-selection {
+        label {
+            padding: .5em .5em .5em 26px;
+            text-indent: .25em;
+        }
+        .admin-yaml-import-type-option {
+            font-weight: bold;
+        }
+    
+        label.admin-yaml-import-type-selected {
+            background: @formActionsBackground;
+        }
+    }
+    .control-group {
+        margin-top: 18px;
+    }
+    */
+}
+.admin-yaml-import-type-modal h4 {
+  margin: 0 0 1em 0;
+}

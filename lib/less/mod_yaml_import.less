@@ -1,0 +1,243 @@
+@import "twitter-bootstrap/variables.less";
+@import "twitter-bootstrap/mixins.less";
+@import "twitter-bootstrap/alerts.less";
+
+
+// From Bootstrap 2.3.3
+
+// DISABLED STATES
+// ---------------
+
+// Gray out text
+.nav > .disabled > a {
+    color: @grayLight;
+}
+// Nuke hover/focus effects
+.nav > .disabled > a:hover,
+.nav > .disabled > a:focus,
+.tabs-left > .nav-tabs > .disabled > a:hover,
+.tabs-left > .nav-tabs > .disabled > a:focus {
+    text-decoration: none;
+    background-color: transparent;
+    cursor: default;
+    border-color: transparent;
+}
+
+
+// Mixins
+
+.yi_triangle_right(@size: 6px, @color:white) {
+    .yi_triangle(@size, @color);
+    margin-right: -@size;
+    border-left: @size solid @color;
+    border-top: @size solid transparent;
+    border-bottom: @size solid transparent;
+}
+.yi_triangle_up(@size: 6px, @color:white) {
+    .yi_triangle(@size, @color);
+    border-bottom: @size solid @color;
+    border-right: @size solid transparent;
+    border-left: @size solid transparent;
+}
+.yi_triangle(@size: 6px, @color:white) {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    content: " ";
+}
+
+.yi_navbar_neutral() {
+    .navbar-inner {
+        #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
+        border: 1px solid @navbarBorder;
+        .box-shadow(0 1px 4px rgba(0,0,0,.065));
+    }
+}
+
+.admin-yaml-import {
+
+    // step wizard
+    
+    #admin-yaml-import-wizard {
+        margin: 1em 0;
+    }
+    
+    // form
+    
+    form {
+        margin: 0;
+    }
+    fieldset {
+        margin: 0 0 15px 0;
+    }
+    .file-input-wrapper+.btn {
+        display: none;
+    }
+    .file-input-name {
+        padding-right: 10px;
+    }
+    
+    .admin-yaml-import-validated {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .admin-yaml-import-settings-bar {
+        .yi_navbar_neutral();
+    }
+    
+    .tab-content {
+        overflow: initial;
+    }
+    
+    // tables
+    
+    .admin-yaml-import-table {
+        width: auto;
+        background: #fff;
+        
+        td, th {
+            width: 33%;
+            
+            &.admin-yaml-import-table-select {
+                width: auto;
+            }
+            
+            p {
+                margin: 10px 0 0 0;
+            }
+        }
+        td span {
+            word-break: break-all;
+        }
+        
+        input[type="text"] {
+            margin: 0;
+            width: 90%;
+        }
+        input[disabled] {
+            background-color: #f2f2f2;
+            color: #aaa;
+        }
+        input[readonly] {
+            cursor: default;
+            background-color: #fff;
+            color: #666;
+        }
+        input.admin-yaml-import-mapping {
+            border: 1px dashed #ccc;
+            box-shadow: none;
+            cursor: pointer;
+            
+            &:hover {
+                border-color: #aaa;
+                background-color: #f2f2f2;
+            }
+        }
+        .admin-yaml-import-validated {
+            width: 100%;
+        }
+        .admin-yaml-import-pager {
+            float: right;
+            font-weight: normal;
+            color: #999;
+
+            a {
+                font-weight: bold;
+                margin: 0 0 0 .25em;
+            }
+        }
+        .admin-yaml-import-record-btn-disabled {
+            cursor: default;
+            color: #aaa;
+    
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        .admin-yaml-import-value {
+            min-width: 300px;
+//            background-color: @infoBackground;
+        }   
+    }
+    
+    .admin-yaml-results-table {
+        th, td {
+            width: 50%;
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+        }
+        
+        .admin-yaml-results-category {
+            color: #999;
+        }
+    }
+
+    .alert {
+        margin-top: 5px;
+    }
+    legend {
+        margin: 0 0 15px 0;
+        padding: 0;
+    }
+    legend + .control-group {
+        margin-top: 0;
+    }
+    textarea.admin-yaml-import-profile {
+        display: none;
+        width: 100%;
+        margin: 15px 0;
+    }
+    
+    // validation
+    
+    .validationMessage,
+    .z_validation_message {
+        .alert-error;
+        position: absolute;
+        z-index: 1;
+        top: 34px;
+        left: 0;
+        padding: 6px 8px;
+        margin: 0;
+        display: inline-block;
+        .border-radius(@baseBorderRadius);
+        font-size: 12px;
+        line-height: 1.35 * 12px;
+        
+        &:after {
+            position: absolute;
+            left: 19px;
+            top: 0;
+            margin-top: -8px;
+            margin-left: -8px;
+            .yi_triangle_up(8px, @errorBackground);
+        }
+    }
+}
+
+.admin-yaml-import-type-modal {
+    h4 {
+        margin: 0 0 1em 0;
+    }
+    /*
+    .admin-yaml-import-type-selection {
+        label {
+            padding: .5em .5em .5em 26px;
+            text-indent: .25em;
+        }
+        .admin-yaml-import-type-option {
+            font-weight: bold;
+        }
+    
+        label.admin-yaml-import-type-selected {
+            background: @formActionsBackground;
+        }
+    }
+    .control-group {
+        margin-top: 18px;
+    }
+    */
+}
