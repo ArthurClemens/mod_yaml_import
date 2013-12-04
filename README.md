@@ -1,6 +1,8 @@
 # YAML data import module for Zotonic
 
-This module let's you import data in [YAML](http://en.wikipedia.org/wiki/YAML) format into Zotonic. It includes options to:
+This module let's you import data in [YAML](http://en.wikipedia.org/wiki/YAML) format into Zotonic, to automatically create Pages from the YAML data.
+
+It includes interface options to:
 
 * rename fields
 * select fields to exclude
@@ -8,6 +10,13 @@ This module let's you import data in [YAML](http://en.wikipedia.org/wiki/YAML) f
 * map the fields to other data types (for instance to import media files, or to use a predicate)
 * preview data from the YAML file
 * import a range
+
+Next to creating Pages you can also create Category Pages.
+
+
+## Installation
+
+See file INSTALL
 
 
 ## One category at a time
