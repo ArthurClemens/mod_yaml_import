@@ -16,15 +16,15 @@
         "js/ko_extensions.js"
         "js/ko_bootstrap_modal.js"
     
-        "css/mod_yaml_import.min.css"
+        "css/mod_yaml_import.css"
     %}
 {% endblock %}
 
 {% block content %}
 <div class="admin-yaml-import">
     <h2>{_ YAML data import _}</h2>
-
-    <div id="admin-yaml-import-wizard">
+    <noscript><p>{_ You need JavaScript to use the import module. _}</p></noscript>
+    <div id="admin-yaml-import-wizard" style="display: none">
         <ul class="nav">
             <li><a href="#tab1" data-toggle="tab">{_ 1. Data source _}</a></li>
             <li><a href="#tab2" data-toggle="tab">{_ 2. Settings _}</a></li>
