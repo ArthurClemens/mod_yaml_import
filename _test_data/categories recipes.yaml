@@ -1,0 +1,16 @@
+%YAML 1.1
+---
+# Categories
+-
+  title: "Recipe"
+  name: "recipe"
+-
+  title: "Recipe overview"
+  name: "recipe_overview"
+-
+  title: "Navigation"
+  name: "navigation"
+-
+  title: "Primary category"
+  name: "primary_category"
+...

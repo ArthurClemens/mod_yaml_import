@@ -2,14 +2,13 @@
 {% block head_extra %}
     {% lib
         "js/libs/bootstrap.file-input.js"
-        "js/libs/jquery.bootstrap.wizard.js"
         "js/libs/json2.js"
         "js/libs/underscore.js"
 
-        "js/libs/knockout-2.3.0.js"
+        "js/libs/knockout-3.0.0.js"
         "js/libs/knockout.validation.js"
-        "js/libs/knockout.mapping-latest.js"
-    
+        "js/libs/knockout.mapping.js"
+        
         "js/mod_yaml_import.js"
         "js/ko_fieldModel.js"
         "js/ko_viewModel.js"
@@ -21,27 +20,30 @@
 {% endblock %}
 
 {% block content %}
-<div class="admin-yaml-import">
+<div class="admin-yaml-import" id="admin-yaml-import">
     <h2>{_ YAML data import _}</h2>
     <noscript><p>{_ You need JavaScript to use the import module. _}</p></noscript>
-    <div id="admin-yaml-import-wizard" style="display: none">
-        <ul class="nav">
-            <li><a href="#tab1" data-toggle="tab">{_ 1. Data source _}</a></li>
-            <li><a href="#tab2" data-toggle="tab">{_ 2. Settings _}</a></li>
-            <li><a href="#tab3" data-toggle="tab">{_ 3. Results _}</a></li>
+    <div id="admin-yaml-import-wizard-menu">
+        <ul class="nav nav-tabs">
+            <li><a href="#upload" data-toggle="tab">1. Upload</a></li>
+            <li><a href="#settings" data-toggle="tab">2. Settings</a></li>
+            <li><a href="#results" data-toggle="tab">3. Results</a></li>
         </ul>
+    </div>
+    {% wire id="admin-yaml-import-form" type="submit" postback={import} delegate="mod_yaml_import" %}
+    <form class="form" id="admin-yaml-import-form" method="post" action="postback" style="display: none">
         <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
+            <div class="tab-pane" id="upload">
                 {% include "_step_upload.tpl" %}
             </div>
-            <div class="tab-pane" id="tab2">
+            <div class="tab-pane" id="settings">
                 {% include "_step_settings.tpl" %}
             </div>
-            <div class="tab-pane" id="tab3">
+            <div class="tab-pane" id="results">
                 {% include "_step_results.tpl" %}
             </div>
         </div>
-    </div>
+    </form>    
 </div>
 {% include "_js_data.tpl" %}
 {% javascript %}

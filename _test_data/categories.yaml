@@ -1,0 +1,12 @@
+%YAML 1.1
+---
+# Categories
+-
+  title: "Recipe"
+  name: "recipe"
+  is_published: "true"
+-
+  title: "Recipe category"
+  name: "recipe_category"
+  is_published: "false"
+...

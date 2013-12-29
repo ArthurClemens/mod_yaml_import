@@ -1,27 +1,74 @@
 # YAML data import module for Zotonic
 
-This module let's you import data in [YAML](http://en.wikipedia.org/wiki/YAML) format into Zotonic, to automatically create Pages from the YAML data.
+This module lets you import data in [YAML](http://en.wikipedia.org/wiki/YAML) format as Zotonic Pages.
 
-It includes interface options to:
+Pages are represented as YAML list items. Item properties are translated to Page attributes (title, summary, ...).
+
+
+## Example data file
+
+
+    %YAML 1.1
+    ---
+    -
+      title: "Cheesy Vegemite pull-apart"
+      summary: "Put these cheesy vegemite scrolls into the school lunch-box as an exciting alternative to the sandwich."
+      img: "http://www.taste.com.au/images/recipes/sfi/2009/03/22132_l.jpg"
+      recipe_tag: "Kids in the kitchen"
+    -
+      title: "Chicken nuggets"
+      summary: "Why not let the kids create their own healthy version of chicken nuggets."
+      img: "http://www.taste.com.au/images/recipes/tas/2012/01/27997_l.jpg"
+      recipe_tag: "Kids in the kitchen"
+    ...
+
+In this example file:
+
+* `title` and `summary` naturally map to Zotonic Page attributes.
+* `img` can be mapped to `medium` (to import the image file)
+* `recipe_tag` can be mapped to Keyword (if the Predicate connection allows this, and the Keyword with that title exists)
+
+
+## Features
+
+The import wizard offers the option to finetune the data before importing, to:
 
 * rename fields
 * select fields to exclude
 * map the title field if it does not exist in the data
-* map the fields to other data types (for instance to import media files, or to use a predicate)
-* preview data from the YAML file
+* map the fields to media type, to automatically download and import media files 
+* map the fields to other data types (using a predicate)
 * import a range
 
 Next to creating Pages you can also create Category Pages.
 
-
-## Installation
-
-See file INSTALL
+To be imported data can be previewed.
 
 
-## One category at a time
+## One category per file
 
-The data file cannot have more than one data structure: all records should be structured the same. Split up the YAML file if you need to import pages for multiple categories.
+The data file cannot have more than one data structure: all records should be structured the same. Split up the YAML file if you need to import pages in multiple categories.
+
+
+## Importing categories
+
+A YAML file to create new categories could look like this:
+
+    %YAML 1.1
+    ---
+    -
+      title: "Recipe"
+      name: "recipe"
+      is_published: "true"
+    -
+      title: "Recipe category"
+      name: "recipe_category"
+      is_published: "false"
+    ...
+
+1. Upload the data source.
+2. At "Create Page type", choose "Category".
+For attribute `is_published`, change Data Type from `text` (in the dialog, choose Status, then "is_published").
 
 
 ## Troubleshooting
@@ -32,3 +79,8 @@ The data file cannot have more than one data structure: all records should be st
         ...
 
     plus a newline at the bottom.
+
+
+## Installation
+
+See file INSTALL

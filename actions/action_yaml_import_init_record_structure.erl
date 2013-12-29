@@ -1,4 +1,4 @@
--module(action_yaml_import_yi_init_structure).
+-module(action_yaml_import_init_record_structure).
 -include("zotonic.hrl").
 
 -export([render_action/4]).

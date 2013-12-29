@@ -1,0 +1,9 @@
+%YAML 1.1
+---
+# Predicates
+-
+  title: "Has primary category"
+  name: "has_primary_category"
+  predicate_subject: "navigation"
+  predicate_object: "primary_category"
+...

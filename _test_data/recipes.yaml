@@ -1,0 +1,74 @@
+%YAML 1.1
+---
+# Recipes
+-
+  title: "Cheesy Vegemite pull-apart"
+  summary: "Put these cheesy vegemite scrolls into the school lunch-box as an exciting alternative to the sandwich."
+  img: "http://www.taste.com.au/images/recipes/sfi/2009/03/22132_l.jpg"
+  recipe_tag: "Kids in the kitchen"
+-
+  title: "Chicken nuggets"
+  summary: "Why not let the kids create their own healthy version of chicken nuggets."
+  img: "http://www.taste.com.au/images/recipes/tas/2012/01/27997_l.jpg"
+  recipe_tag: "Kids in the kitchen"
+-
+  title: "Caramel popcorn lions"
+  summary: "Roll up, roll up, the circus is in town - and it's full of exciting and delicious treats!"
+  img: "http://www.taste.com.au/images/recipes/sfi/2010/03/24404_l.jpg"
+  recipe_tag: "Kids in the kitchen"
+-
+  title: "Banana split bake"
+  summary: "Impress family and friends with this scrumptious, 'tray chic' fruity dessert."
+  img:  "http://www.taste.com.au/images/recipes/sfi/2010/10/25757_l.jpg"
+  recipe_tag: "Kids in the kitchen"
+-
+  title: "Vegetable fritters"
+  summary: "Pack more veges into kids meals with these fast and delicious fritters."
+  img: "http://www.taste.com.au/images/recipes/tas/2012/01/28002_l.jpg"
+  recipe_tag: "Kids in the kitchen"
+-
+  title: "Chicken and salad wraps"
+  summary: "Fill your picnic basket with these transportable chicken salad wraps and make the most of the outdoors!"
+  img: "http://www.taste.com.au/images/recipes/sfi/2011/10/28192_l.jpg"
+  recipe_tag: "Kids in the kitchen"
+-
+  title: "Mexican chicken tortillas"
+  summary: "Let the kids have a go at making these easy chicken tortillas."
+  img: "http://www.taste.com.au/images/recipes/tas/2012/01/27998_l.jpg"
+  recipe_tag: "Kids in the kitchen"
+-
+  title: "Cold seafood platter"
+  summary: "This magnificent cold seafood platter recipe is brought to you by taste.com.au and Houghton Wine. Pair this dish with Houghton White Classic."
+  img: "http://www.taste.com.au/images/recipes/tas/2013/11/34704_l.jpg"
+  recipe_tag: "Christmas"
+-
+  title: "Pumpkin and pasta pie"
+  summary: "A flavour-packed filling is lovingly wrapped in filo to make this rustic pie."
+  img: "http://www.taste.com.au/images/recipes/agt/2013/02/32523_l.jpg"
+  recipe_tag: "Christmas"
+-
+  title: "Ricotta mushrooms with thyme pangrattato"
+  summary: "Pangrattato, Italian fried breadcrumbs, adds a crunchy hit of herbs to mushroom bites."
+  img: "http://www.taste.com.au/images/recipes/agt/2011/02/26740_l.jpg"
+  recipe_tag: "Christmas"
+-
+  title: "Tiramisu cups"
+  summary: "These tiramisu cups look amazing & are easy to make ahead."
+  img: "http://www.taste.com.au/images/recipes/col/2013/11/34617_l.jpg"
+  recipe_tag: "Christmas"
+-
+  title: "White chocolate eggnog"
+  summary: "Serve this white chocolate eggnog with vanilla marshmallow stars and your guests will love you for it!"
+  img: "http://www.taste.com.au/images/recipes/agt/2009/07/22764_l.jpg"
+  recipe_tag: "Christmas"
+-
+  title: "Gingerbread men"
+  summary: "The kids will love decorating these cute gingerbread men. Keep them to eat or give them out as Christmas gifts."
+  img: "http://www.taste.com.au/images/recipes/sfi/2008/12/21346_l.jpg"
+  recipe_tag: "Christmas"
+-
+  title: "Roasted tomatoes"
+  summary: "Make this side a part of an easy banquet for the whole family to enjoy this Christmas!"
+  img: "http://www.taste.com.au/images/recipes/sfi/2010/12/26177_l.jpg"
+  recipe_tag: "Christmas"
+...

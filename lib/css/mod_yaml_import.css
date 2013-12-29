@@ -85,19 +85,24 @@
 .alert-block p + p {
   margin-top: 5px;
 }
-.nav > .disabled > a {
+.nav > .disabled > a,
+.nav > .inaccessible > a {
   color: #999999;
 }
 .nav > .disabled > a:hover,
 .nav > .disabled > a:focus,
-.tabs-left > .nav-tabs > .disabled > a:hover,
-.tabs-left > .nav-tabs > .disabled > a:focus {
+.nav > .inaccessible > a:hover,
+.nav > .inaccessible > a:focus,
+.nav-tabs > .disabled > a:hover,
+.nav-tabs > .disabled > a:focus,
+.nav-tabs > .inaccessible > a:hover,
+.nav-tabs > .inaccessible > a:focus {
   text-decoration: none;
   background-color: transparent;
   cursor: default;
   border-color: transparent;
 }
-.admin-yaml-import #admin-yaml-import-wizard {
+.nav-tabs {
   margin: 1em 0;
 }
 .admin-yaml-import form {
@@ -132,10 +137,16 @@
 }
 .admin-yaml-import .tab-content {
   overflow: initial;
+  min-height: 100px;
+  margin: 1em 0;
 }
 .admin-yaml-import .admin-yaml-import-table {
   width: auto;
-  background: #fff;
+}
+.admin-yaml-import .admin-yaml-import-table table,
+.admin-yaml-import .admin-yaml-import-table tr,
+.admin-yaml-import .admin-yaml-import-table tr:hover td {
+  background: #f0f0f0;
 }
 .admin-yaml-import .admin-yaml-import-table td,
 .admin-yaml-import .admin-yaml-import-table th {
@@ -166,13 +177,10 @@
   color: #666;
 }
 .admin-yaml-import .admin-yaml-import-table input.admin-yaml-import-mapping {
-  border: 1px dashed #ccc;
-  box-shadow: none;
   cursor: pointer;
 }
 .admin-yaml-import .admin-yaml-import-table input.admin-yaml-import-mapping:hover {
-  border-color: #aaa;
-  background-color: #f2f2f2;
+  background-color: #e6f3fa;
 }
 .admin-yaml-import .admin-yaml-import-table .admin-yaml-import-validated {
   width: 100%;

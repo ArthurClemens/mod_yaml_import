@@ -1,0 +1,14 @@
+%YAML 1.1
+---
+# Recipes
+-
+  title: "Cheesy Vegemite pull-apart"
+  summary: "Put these cheesy vegemite scrolls into the school lunch-box as an exciting alternative to the sandwich."
+  img: http://www.taste.com.au/images/recipes/sfi/2009/03/22132_l.jpg, http://www.taste.com.au/images/recipes/sfi/2010/03/24404_l.jpg
+  recipe_tag: "Kids in the kitchen"
+-
+  title: "Chicken nuggets"
+  summary: "Why not let the kids create their own healthy version of chicken nuggets."
+  img: http://www.taste.com.au/images/recipes/tas/2012/01/27997_l.jpg, http://www.taste.com.au/images/recipes/tas/2012/01/28002_l.jpg
+  recipe_tag: "Kids in the kitchen"
+...

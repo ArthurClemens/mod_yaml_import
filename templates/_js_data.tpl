@@ -6,7 +6,7 @@ mod_yaml_import.constants = {
     },
     types: [
         {
-            title: "{_ Text _}",
+            title: "Text",
             id: "text",
             info: "This is the default."
         },
@@ -44,7 +44,7 @@ mod_yaml_import.constants = {
         {
             title: "Medium",
             id: "medium",
-            info: "Media will be downloaded and connected to the page. Value is a URL or an array of URLs."
+            info: "Media will be downloaded and connected to the page. Value is a URL or a comma-separated list of URLs."
         },
         {
             title: "Page connection",

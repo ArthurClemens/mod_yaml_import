@@ -6,7 +6,7 @@
     <fieldset>
         <legend>{_ Category _}</legend>
         <div class="control-group">
-            <label class="control-label">{_ Create Page type: _}</label>
+            <label class="control-label">{_ Create Page Type: _}</label>
             <div class="controls">
                 <select data-bind="foreach: categoryGroups, value: selectedCategory">
                     <optgroup data-bind="attr: {label: label}, foreach: children">
@@ -37,13 +37,12 @@
                     <th>{_ Identifier _}</th>
                     <th class="admin-yaml-import-value">
                         <div class="admin-yaml-import-pager">
-                            {_ Record _} <span class="admin-yaml-import-record-pagenum"></span>
-                            <a href="#" class="admin-yaml-import-record-btn-prev">prev</a>
-                            <a href="#" class="admin-yaml-import-record-btn-next">next</a>
+                            <a href="#" class="btn btn-mini admin-yaml-import-record-btn-prev">&#x2190;</a>
+                            <a href="#" class="btn btn-mini admin-yaml-import-record-btn-next">&#x2192;</a>
                         </div>
-                        {_ Value _}
+                        {_ Record _} <span class="admin-yaml-import-record-pagenum"></span> / {{ pageCount }}
                     </th>
-                    <th>{_ Data type _}</th>
+                    <th>{_ Data Type _}</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: fields">
@@ -77,11 +76,11 @@
             <label class="control-label">{_ Import records _}</label>
             <div class="controls">
                 <div class="admin-yaml-import-validated">
-                    <input type="text" id="inputRangeFrom" name="inputRangeFrom" class="input-small" data-bind="value: rangeFrom, valueUpdate: ['afterkeydown','propertychange','input']" />
+                    <input type="text" name="inputRangeFrom" class="input-small" data-bind="value: rangeFrom, valueUpdate: ['afterkeydown','propertychange','input']" />
                 </div>
-                {_ up to _}
+                {_ to _}
                 <div class="admin-yaml-import-validated">
-                    <input type="text" id="inputRangeTo" name="inputRangeTo" class="input-small" data-bind="initializeValue:rangeTo, value: rangeTo, valueUpdate: ['afterkeydown','propertychange','input']" value="{{ pageCount }}" />
+                    <input type="text" name="inputRangeTo" class="input-small" data-bind="initializeValue:rangeTo, value: rangeTo, valueUpdate: ['afterkeydown','propertychange','input']" value="{{ pageCount }}" />
                 </div>
             </div>
         </div>
@@ -93,4 +92,6 @@
     </fieldset>
 
     <textarea name="admin-yaml-import-profile" rows="5" class="admin-yaml-import-profile"></textarea>
+    
+    <input type="hidden" name="json" value="" />
 </div>

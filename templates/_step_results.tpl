@@ -1,17 +1,13 @@
-<div data-bind="template: { name: 'admin-yaml-import-error-template', if: error }"></div>
-<div data-bind="template: { name: 'admin-yaml-import-results-template', if: results }"></div>
-
 <script type="text/html" id="admin-yaml-import-error-template">
     <div class="alert alert-error" data-bind="text: error"></div>
 </script>
 
 <script type="text/html" id="admin-yaml-import-results-template">
-    <h3>{_ Imported _}</h3>
     <table class="table admin-yaml-results-table">
         <thead>
             <tr>
-                <th>{_ Page _}</th>
-                <th>{_ Connections _}</th>
+                <th>{_ Created Pages _}</th>
+                <th>{_ Page Connections _}</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: results">
@@ -30,3 +26,6 @@
         </tbody>
     </table>
 </script>
+
+<div data-bind="template: { name: 'admin-yaml-import-error-template', if: error }"></div>
+<div data-bind="template: { name: 'admin-yaml-import-results-template', if: results }"></div>
