@@ -27,7 +27,7 @@
     import/3
 ]).
 
--record(importresult, {seen=[], new=[], updated=[], errors=[], ignored=[], deleted=0}).
+%%-record(importresult, {seen=[], new=[], updated=[], errors=[], ignored=[], deleted=0}).
 
 import(Data, JsonData, Context) ->
     StartDate = erlang:localtime(),
@@ -42,29 +42,65 @@ import(Data, JsonData, Context) ->
             end, FieldData)
         end, FieldsStructs),  
     RangeLimitedData = lists:sublist(Data, RangeFrom, (RangeTo-RangeFrom+1)),
-    
+        
     ProcessedPages = lists:map(fun(PageData) -> 
         create_resource(PageData, Category, FieldAttrs, TitleField, Context) 
     end, RangeLimitedData),
 
-    ProcessedPagesData = lists:map(fun([{page, PageId}, {media, AttachedIdList}, {connection, PredicateIdList}]) ->
-        ConnectionIds = lists:flatten(AttachedIdList) ++ lists:flatten(PredicateIdList),
-        [
-            {pagedata, richPageData(PageId, Context)},
-            {connectiondata, [richPageData(ObjectId, Context) || {id, ObjectId} <- ConnectionIds, id =/= error]}
-        ]
+    ProcessedPagesData = lists:map(fun(PageData) ->
+        case PageData of
+            [{page, PageId}, {media, AttachedIdList}, {connection, PredicateIdList}] ->
+                ConnectionIds = lists:flatten(AttachedIdList) ++ lists:flatten(PredicateIdList),
+                [
+                    {pagedata, richPageData(PageId, Context)},
+                    {connectiondata, [richPageData(ObjectId, Context) || {id, ObjectId} <- ConnectionIds, id =/= error]}
+                ];
+            [{page, {error, _}}] ->
+                % TODO: report errors
+                []
+            end     
         end, ProcessedPages),
+    
+    PrunedProcessedPagesData = lists:filter(fun(L) -> L =/= [] end, ProcessedPagesData),
     
     [
         {date_start, binary_date(StartDate)},
         {date_end, binary_date(erlang:localtime())},
-        {imported, ProcessedPagesData}
+        {imported, PrunedProcessedPagesData}
     ].
 
+%% Create Predicate resource
+create_resource(PageData, Category, _, TitleField, Context) when Category =:= 117 ->    
+    PredicateName = binary_to_list(proplists:get_value(<<"name">>, PageData)),
+    FromName = binary_to_list(proplists:get_value(<<"from">>, PageData)),
+    FromId = m_rsc:name_lookup(FromName, Context),
+    ToName = binary_to_list(proplists:get_value(<<"to">>, PageData)),
+    ToId = m_rsc:name_lookup(ToName, Context),
+    Title = binary_to_list(proplists:get_value(TitleField, PageData)),
 
+    Props = [
+        {title, Title},
+        {category, Category},
+        {is_published, true},
+        {name, PredicateName},
+        {predicate_subject, FromId},
+        {predicate_object, ToId}
+        ],
+
+    try
+        {ok, PageId} = m_rsc:insert(Props, Context),
+        [{page, PageId}, {media, []}, {connection, []}]
+    catch
+        {_, Reason} -> 
+            [{page, {error, Reason}}]
+    end;
+
+
+%% Create Page or Category resource
 create_resource(PageData, Category, FieldAttrs, TitleField, Context) ->
     Title = proplists:get_value(TitleField, PageData),
     ValueProps = [make_page_prop(page, PageData, Attrs, Context) || Attrs <- FieldAttrs],
+    
     MediumProps = [make_page_prop(medium, PageData, Attrs, Context) || Attrs <- FieldAttrs],
     ConnectionProps = [make_page_prop(connection, PageData, Attrs, Context) || Attrs <- FieldAttrs],
     CleanValueProps = lists:filter(fun({K,_}) -> K =/= undefined end, ValueProps),
@@ -74,18 +110,17 @@ create_resource(PageData, Category, FieldAttrs, TitleField, Context) ->
     Props = [{title, Title},
              {category, Category},
              get_published_state(CleanValueProps)],
-    
     PageProps = Props ++ CleanValueProps,
     
-    PageIds = case m_rsc:insert(PageProps, Context) of
-        {ok, PageId} -> 
-            AttachedIds = upload_media(CleanMediumProps, PageId, Context),
-            ConnectedIds = link_pages(CleanConnectionProps, PageId, Context),
-            [{page, PageId}, {media, AttachedIds}, {connection, ConnectedIds}];
-        {error, Reason} ->
+    try
+        {ok, PageId} = m_rsc:insert(PageProps, Context),
+        AttachedIds = upload_media(CleanMediumProps, PageId, Context),
+        ConnectedIds = link_pages(CleanConnectionProps, PageId, Context),
+        [{page, PageId}, {media, AttachedIds}, {connection, ConnectedIds}]
+    catch
+        {_, Reason} -> 
             [{page, {error, Reason}}]
-        end,
-    PageIds.
+    end.
 
 
 make_page_prop(Type, PageData, Attrs, Context) ->
@@ -151,8 +186,7 @@ make_page_prop(Type, _, FieldType, FieldValue, _, MakeList, _) when Type =:= med
 make_page_prop(_, FieldName, FieldType, FieldValue, FieldMappingProps, _, _) ->
     case FieldType of
         "status" ->
-            {struct, [{<<"status">>, ModeBin}]} = FieldMappingProps,            
-            Mode = binary_to_list(ModeBin),
+            Mode = binary_to_list(proplists:get_value(<<"status">>, FieldMappingProps)),
             {make_valid_field_key(Mode), to_boolean(FieldValue)};
         "medium" ->
             {undefined, undefined};

@@ -52,7 +52,7 @@ The data file cannot have more than one data structure: all records should be st
 
 ## Importing categories
 
-A YAML file to create new categories could look like this:
+A YAML file to create new categories should have at least the attributes `title` and `name`. Example:
 
     %YAML 1.1
     ---
@@ -71,6 +71,27 @@ A YAML file to create new categories could look like this:
 For attribute `is_published`, change Data Type from `text` (in the dialog, choose Status, then "is_published").
 
 
+## Importing predicates
+
+A YAML file to create new predicates should have 4 mandatory attributes for each predicate:
+
+* `title`
+* `name`: must be unique
+* `from`: similar to Predicate edit screen - the category name (not title)
+* `to`: similar to Predicate edit screen - the category name (not title)
+
+Example:
+
+    %YAML 1.1
+    ---
+    -
+      title: "Has primary category"
+      name: "has_primary_category"
+      from: "navigation"
+      to: "primary_category"
+    ...
+
+
 ## Troubleshooting
 
 * In case international characters are garbled: make sure the text is saved as UTF-8 (no BOM).
@@ -84,3 +105,8 @@ For attribute `is_published`, change Data Type from `text` (in the dialog, choos
 ## Installation
 
 See file INSTALL
+
+
+## TODO
+
+* Better error reporting

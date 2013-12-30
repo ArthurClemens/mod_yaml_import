@@ -4,6 +4,6 @@
 -
   title: "Has primary category"
   name: "has_primary_category"
-  predicate_subject: "navigation"
-  predicate_object: "primary_category"
+  from: "navigation"
+  to: "primary_category"
 ...

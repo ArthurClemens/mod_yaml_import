@@ -1,7 +1,6 @@
 {% extends "admin_base.tpl" %}
 {% block head_extra %}
     {% lib
-        "js/libs/bootstrap.file-input.js"
         "js/libs/json2.js"
         "js/libs/underscore.js"
 
