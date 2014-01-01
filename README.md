@@ -95,11 +95,10 @@ Example:
 ## Troubleshooting
 
 * In case international characters are garbled: make sure the text is saved as UTF-8 (no BOM).
-* In case the module does not import the file at all: make sure the file ends with:
+* In case the module does not import the file at all: make sure the list ends with a newline, and then 3 dots:
 
         ...
 
-    plus a newline at the bottom.
 
 
 ## Installation

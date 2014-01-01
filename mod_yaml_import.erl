@@ -117,7 +117,8 @@ parseFile(File) ->
         [] -> undefined;
         _ -> 
             % Parse data
-            try yamerl_constr:string(FileString, [str_node_as_binary]) of
+            FileString1 = FileString ++ "\n",
+            try yamerl_constr:string(FileString1, [str_node_as_binary]) of
                 Docs -> Docs,
                 hd(Docs)
             catch
