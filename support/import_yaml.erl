@@ -187,7 +187,7 @@ make_page_prop(_, FieldName, FieldType, FieldValue, FieldMappingProps, _, _) ->
     case FieldType of
         "status" ->
             Mode = binary_to_list(proplists:get_value(<<"status">>, FieldMappingProps)),
-            {make_valid_field_key(Mode), to_boolean(FieldValue)};
+            {make_valid_field_key(Mode), to_boolean(binary_to_list(FieldValue))};
         "medium" ->
             {undefined, undefined};
         _ ->
@@ -299,6 +299,9 @@ json_decode(V) -> V.
 
 to_boolean(V) when is_list(V), V =:= "true" -> true;
 to_boolean(V) when is_list(V), V =:= "false" -> false;
+to_boolean(V) when is_list(V), V =:= "1" -> true;
+to_boolean(V) when is_list(V), V =:= "0" -> false;
+to_boolean(V) when is_list(V), V =:= [] -> false;
 to_boolean(V) when is_list(V) -> list_to_integer(V);
 to_boolean(V) when is_boolean(V) -> V;
 to_boolean(V) when is_integer(V), V =:= 1 -> true;

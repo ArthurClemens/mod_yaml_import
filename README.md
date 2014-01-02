@@ -80,6 +80,8 @@ A YAML file to create new predicates should have 4 mandatory attributes for each
 * `from`: similar to Predicate edit screen - the category name (not title)
 * `to`: similar to Predicate edit screen - the category name (not title)
 
+All attributes have type Text.
+
 Example:
 
     %YAML 1.1
