@@ -42,9 +42,10 @@ import(Data, JsonData, Context) ->
             end, FieldData)
         end, FieldsStructs),  
     RangeLimitedData = lists:sublist(Data, RangeFrom, (RangeTo-RangeFrom+1)),
-        
+    IsTestRun = to_boolean(proplists:get_value(<<"testrun">>, JsonData)),
+    
     ProcessedPages = lists:map(fun(PageData) -> 
-        create_resource(PageData, Category, FieldAttrs, TitleField, Context) 
+        create_resource(PageData, Category, FieldAttrs, TitleField, IsTestRun, Context) 
     end, RangeLimitedData),
 
     ProcessedPagesData = lists:map(fun(PageData) ->
@@ -53,11 +54,16 @@ import(Data, JsonData, Context) ->
                 ConnectionIds = lists:flatten(AttachedIdList) ++ lists:flatten(PredicateIdList),
                 [
                     {pagedata, richPageData(PageId, Context)},
-                    {connectiondata, [richPageData(ObjectId, Context) || {id, ObjectId} <- ConnectionIds, id =/= error]}
+                    {connectiondata, [richPageData(ObjectId, Context) || {id, ObjectId} <- ConnectionIds, (id =/= error) and (id =/= test)]}
                 ];
             [{page, {error, _}}] ->
                 % TODO: report errors
-                []
+                [];
+            [{page, {test, Title}}] ->
+                [
+                    {pagedata, testrunPageData(Title, Context)},
+                    {connectiondata, []}
+                ]
             end     
         end, ProcessedPages),
     
@@ -70,7 +76,7 @@ import(Data, JsonData, Context) ->
     ].
 
 %% Create Predicate resource
-create_resource(PageData, Category, _, TitleField, Context) when Category =:= 117 ->    
+create_resource(PageData, Category, _, TitleField, IsTestRun, Context) when Category =:= 117 ->    
     PredicateName = binary_to_list(proplists:get_value(<<"name">>, PageData)),
     FromName = binary_to_list(proplists:get_value(<<"from">>, PageData)),
     FromId = m_rsc:name_lookup(FromName, Context),
@@ -88,8 +94,13 @@ create_resource(PageData, Category, _, TitleField, Context) when Category =:= 11
         ],
 
     try
-        {ok, PageId} = m_rsc:insert(Props, Context),
-        [{page, PageId}, {media, []}, {connection, []}]
+        case IsTestRun of
+            true -> 
+                [{page, {test, Title}}];
+            _ ->
+                {ok, PageId} = m_rsc:insert(Props, Context),
+                [{page, PageId}, {media, []}, {connection, []}]
+            end
     catch
         {_, Reason} -> 
             [{page, {error, Reason}}]
@@ -97,7 +108,7 @@ create_resource(PageData, Category, _, TitleField, Context) when Category =:= 11
 
 
 %% Create Page or Category resource
-create_resource(PageData, Category, FieldAttrs, TitleField, Context) ->
+create_resource(PageData, Category, FieldAttrs, TitleField, IsTestRun, Context) ->
     Title = proplists:get_value(TitleField, PageData),
     ValueProps = [make_page_prop(page, PageData, Attrs, Context) || Attrs <- FieldAttrs],
     
@@ -113,10 +124,15 @@ create_resource(PageData, Category, FieldAttrs, TitleField, Context) ->
     PageProps = Props ++ CleanValueProps,
     
     try
-        {ok, PageId} = m_rsc:insert(PageProps, Context),
-        AttachedIds = upload_media(CleanMediumProps, PageId, Context),
-        ConnectedIds = link_pages(CleanConnectionProps, PageId, Context),
-        [{page, PageId}, {media, AttachedIds}, {connection, ConnectedIds}]
+        case IsTestRun of
+            true -> 
+                [{page, {test, Title}}];
+            _ ->
+                {ok, PageId} = m_rsc:insert(PageProps, Context),
+                AttachedIds = upload_media(CleanMediumProps, PageId, Context),
+                ConnectedIds = link_pages(CleanConnectionProps, PageId, Context),
+                [{page, PageId}, {media, AttachedIds}, {connection, ConnectedIds}]
+            end
     catch
         {_, Reason} -> 
             [{page, {error, Reason}}]
@@ -212,6 +228,12 @@ richPageData(Id, Context) ->
         {edit_url, to_binary(z_dispatcher:url_for(admin_edit_rsc, [{id, Id}], Context))},
         {title, to_binary(mod_yaml_import:get_prop(Id, title, Context))},
         {category, to_binary(m_rsc:p(m_rsc:p(Id, category_id, Context), name, Context))}
+    ].
+
+
+testrunPageData(Title, _) ->
+    [
+        {title, to_binary(Title)}
     ].
 
 

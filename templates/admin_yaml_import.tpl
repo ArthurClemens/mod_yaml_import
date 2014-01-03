@@ -30,7 +30,7 @@
         </ul>
     </div>
     {% wire id="admin-yaml-import-form" type="submit" postback={import} delegate="mod_yaml_import" %}
-    <form class="form" id="admin-yaml-import-form" method="post" action="postback" style="display: none">
+    <form class="form form-horizontal" id="admin-yaml-import-form" method="post" action="postback" style="display: none">
         <div class="tab-content">
             <div class="tab-pane" id="upload">
                 {% include "_step_upload.tpl" %}

@@ -13,7 +13,11 @@
         <tbody data-bind="foreach: results">
             <tr>
                 <td>
-                    <a data-bind="attr: {href: pagedata.edit_url}, text: pagedata.title" target="_blank"></a>
+                    <span data-bind="if: pagedata.edit_url">
+                        <a data-bind="attr: {href: pagedata.edit_url}, text: pagedata.title" target="_blank"></a>
+                    </span>
+                    <span data-bind="ifnot: pagedata.edit_url"><span data-bind="text:pagedata.title"></span>
+                    </span>
                 </td>
                 <td>
                     <ul data-bind="foreach: connectiondata">

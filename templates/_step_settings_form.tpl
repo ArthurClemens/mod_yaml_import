@@ -88,7 +88,7 @@
 
     <fieldset>
         <div class="admin-yaml-import-feedback"></div>
-        <button class="btn btn-primary admin-yaml-import-submit-profile">{_ Import _}</button>
+        <button class="btn admin-yaml-import-submit-profile admin-yaml-import-submit-testrun">{_ Test run _}</button> <button class="btn btn-primary admin-yaml-import-submit-profile">{_ Import _}</button>
     </fieldset>
 
     <textarea name="admin-yaml-import-profile" rows="5" class="admin-yaml-import-profile"></textarea>
