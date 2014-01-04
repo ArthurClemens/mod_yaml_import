@@ -324,7 +324,7 @@ to_boolean(V) when is_list(V), V =:= "false" -> false;
 to_boolean(V) when is_list(V), V =:= "1" -> true;
 to_boolean(V) when is_list(V), V =:= "0" -> false;
 to_boolean(V) when is_list(V), V =:= [] -> false;
-to_boolean(V) when is_list(V) -> list_to_integer(V);
+to_boolean(V) when is_list(V) -> false;
 to_boolean(V) when is_boolean(V) -> V;
 to_boolean(V) when is_integer(V), V =:= 1 -> true;
 to_boolean(V) when is_integer(V) -> false;
