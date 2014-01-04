@@ -8,6 +8,12 @@ Medium URLs can be attached automatically; pages can be connected using predicat
 
 Next to pages, categories and predicates can be created as well.
 
+---
+
+**Before trying out, first backup you data!**
+
+---
+
 ## Example data file
 
 
