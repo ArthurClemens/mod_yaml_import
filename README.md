@@ -1,9 +1,12 @@
 # YAML data import module for Zotonic
 
-This module lets you import data in [YAML](http://en.wikipedia.org/wiki/YAML) format as Zotonic Pages.
+This module lets you import data in [YAML](http://en.wikipedia.org/wiki/YAML) format to create new Zotonic Pages.
 
-Pages are represented as YAML list items. Item properties are translated to Page attributes (title, summary, ...).
+Pages are represented as YAML list items. Item properties are translated to Page attributes (title, summary, is_published, ...).
 
+Medium URLs can be attached automatically; pages can be connected using predicates.
+
+Next to pages, categories and predicates can be created as well.
 
 ## Example data file
 
@@ -40,14 +43,31 @@ The import wizard offers the option to finetune the data before importing, to:
 * map the fields to other data types (using a predicate)
 * import a range
 
-Next to creating Pages you can also create Category Pages.
-
 To be imported data can be previewed.
+
+Before importing, you can choose Test Run (output is still rather basic).
 
 
 ## One category per file
 
 The data file cannot have more than one data structure: all records should be structured the same. Split up the YAML file if you need to import pages in multiple categories.
+
+
+## Importing multiple images
+
+For the property to be mapped to medium, pass a comma-delimited string:
+
+    %YAML 1.1
+    ---
+    # Recipes
+    -
+      title: "Cheesy Vegemite pull-apart"
+      summary: "Put these cheesy vegemite scrolls into the school lunch-box as an exciting alternative to the sandwich."
+      img: http://www.taste.com.au/images/recipes/sfi/2009/03/22132_l.jpg, http://www.taste.com.au/images/recipes/sfi/2010/03/24404_l.jpg
+    ...
+
+* At Data Type, choose Medium
+* Check "Multiple import from comma-separated list"
 
 
 ## Importing categories
@@ -102,12 +122,12 @@ Example:
         ...
 
 
-
 ## Installation
 
-See file INSTALL
+See file INSTALL.
 
 
 ## TODO
 
-* Better error reporting
+* Better error reporting (also in Test Run mode).
+* Support for translation strings.
