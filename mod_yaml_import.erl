@@ -15,15 +15,15 @@
 -include_lib("modules/mod_admin/include/admin_menu.hrl").
 
 -export([
-         init/1,
-         observe_admin_menu/3,
-         event/2,
-         record_values/2,
-         category_list/2,
-         meta_category_list/1,
-         predicate_list/1,
-         validate/3,
-         get_prop/3
+    init/1,
+    observe_admin_menu/3,
+    event/2,
+    record_values/2,
+    category_list/2,
+    meta_category_list/1,
+    predicate_list/1,
+    validate/3,
+    get_prop/3
 ]).
 
 
@@ -63,38 +63,40 @@ event(#submit{message={import, _}}, Context) ->
 %% Reads uploaded YAML file and stores the data in persistent
 %% Invokes action 'init_record_structure' to call JavaScript with the data structure (not the contents).
 handleFileUpload(File, Context) ->
-    Data = parseFile(File),
-    case Data of
-        undefined -> 
-            Html = z_template:render("_admin_yaml_import_error.tpl", [{message, io_lib:format("Could not parse file ~p", [File#upload.filename])}], Context),
-            z_render:update_selector(".admin-yaml-import-upload-error", Html, Context);
-        _ ->
-            % Store data for later when user decides to import
-            z_context:set_persistent(?KEY_STORAGE_DATA, Data, Context), 
+    case File of 
+        [] -> handleFileError(Context);
+        _ -> 
+        Data = parseFile(File),
+        case Data of
+            undefined -> 
+                handleFileError(Context);
+            _ ->
+                % Store data for later when user decides to import
+                z_context:set_persistent(?KEY_STORAGE_DATA, Data, Context), 
 
-            PageNum = 1,
-            Page = lists:nth(PageNum, Data),
-            PageCount = length(Data),
-            Keys = lists:map(fun({K,_}) -> K end, Page),    
+                PageNum = 1,
+                Page = lists:nth(PageNum, Data),
+                PageCount = length(Data),
+                Keys = lists:map(fun({K,_}) -> K end, Page),    
         
-            % Remove possible leftover error message
-            Context1 = z_render:update_selector(".admin-yaml-import-upload-error", "", Context),
+                % Remove possible leftover error message
+                Context1 = z_render:update_selector(".admin-yaml-import-upload-error", "", Context),
         
-            % Show form page
-            Html = z_template:render("_step_settings_form.tpl", [{pageCount, PageCount}], Context1),
-            Context2 = z_render:update_selector(".admin-yaml-import-form", Html, Context1), 
+                % Show form page
+                Html = z_template:render("_step_settings_form.tpl", [{pageCount, PageCount}], Context1),
+                Context2 = z_render:update_selector(".admin-yaml-import-form", Html, Context1), 
 
-            % Pass record structure to javascript    
-            Record = lists:map(fun(K) -> 
-                [
-                    {name, K},
-                    {included, true}
-                ]
-                end, Keys),
-            Json = mochijson2:encode(Record),
-            z_render:wire({init_record_structure, [{json, Json}]}, Context2)
+                % Pass record structure to javascript    
+                Record = lists:map(fun(K) -> 
+                    [
+                        {name, K},
+                        {included, true}
+                    ]
+                    end, Keys),
+                Json = mochijson2:encode(Record),
+                z_render:wire({init_record_structure, [{json, Json}]}, Context2)
+            end
         end.
-
 
 handleImport(File, Json, Context) ->
     Data = parseFile(File),
@@ -109,6 +111,9 @@ handleImport(File, Json, Context) ->
         end,
     Context1.
 
+handleFileError(Context) ->
+    Html = z_template:render("_admin_yaml_import_error.tpl", [{message, io_lib:format("Could not parse file.", [])}], Context),
+    z_render:update_selector(".admin-yaml-import-upload-error", Html, Context).
 
 parseFile(File) ->
     {ok, FileData} = file:read_file(File#upload.tmpfile),

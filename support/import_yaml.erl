@@ -27,8 +27,6 @@
     import/3
 ]).
 
-%%-record(importresult, {seen=[], new=[], updated=[], errors=[], ignored=[], deleted=0}).
-
 import(Data, JsonData, Context) ->
     StartDate = erlang:localtime(),
     TitleField = proplists:get_value(<<"titleField">>, JsonData), % keep as binary as lookup key in page data
@@ -173,7 +171,7 @@ make_page_prop(Type, _, FieldType, FieldValue, FieldMappingProps, MakeList, Cont
                 end,
             
             % get all pages within the object category
-            #search_result{result=RawList} = z_search:search({all, [{cat,ObjectCategory}]}, Context),
+            RawList = z_search:query_([{cat, ObjectCategory}], Context),
             
             ObjectIds = lists:map(fun(V) ->                                
                 Value = case MakeList of
