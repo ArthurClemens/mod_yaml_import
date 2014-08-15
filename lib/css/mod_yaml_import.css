@@ -215,6 +215,10 @@
 .admin-yaml-import .admin-yaml-results-table .admin-yaml-results-category {
   color: #999;
 }
+.admin-yaml-import .admin-yaml-results-table .admin-yaml-results-test {
+  color: #999;
+  margin: 0 0 0 .5em;
+}
 .admin-yaml-import .alert {
   margin-top: 5px;
 }
@@ -246,7 +250,7 @@
   -moz-border-radius: 4px;
   border-radius: 4px;
   font-size: 12px;
-  line-height: 16.200000000000003px;
+  line-height: 16.2px;
 }
 .admin-yaml-import .validationMessage:after,
 .admin-yaml-import .z_validation_message:after {

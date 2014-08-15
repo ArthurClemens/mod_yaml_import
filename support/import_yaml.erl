@@ -60,6 +60,7 @@ import(Data, JsonData, Context) ->
             [{page, {test, Title}}] ->
                 [
                     {pagedata, testrunPageData(Title, Context)},
+                    {testrun, true},
                     {connectiondata, []}
                 ]
             end     

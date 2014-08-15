@@ -17,6 +17,7 @@
                         <a data-bind="attr: {href: pagedata.edit_url}, text: pagedata.title" target="_blank"></a>
                     </span>
                     <span data-bind="ifnot: pagedata.edit_url"><span data-bind="text:pagedata.title"></span>
+                    <span class="admin-yaml-results-test" data-bind="if: testrun">test run</span>
                     </span>
                 </td>
                 <td>
